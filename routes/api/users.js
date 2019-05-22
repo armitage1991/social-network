@@ -29,7 +29,7 @@ router.post('/register',(req,resp)=>{
 
     const {errors, isValid} = validateRegisterInput(req.body);
 
-    if(errors || !isValid){
+    if(!isValid){
         return resp.status(400).json({errors:errors})
     }
 
