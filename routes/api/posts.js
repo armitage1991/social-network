@@ -6,8 +6,6 @@ const Post = require('../../models/Post')
 const Profile = require('../../models/profile');
 const validatePostInput = require('../../validation/posts')
 
-
-
 //@route GET api/posts/like/:id
 //@Description test post route
 //@acess Private

@@ -9,8 +9,6 @@ const validateProfileInput = require('../../validation/profile');
 const validateExperienceInput = require('../../validation/experience');
 const validateEducationInput = require('../../validation/education');
 
-
-
 //Load profile model
 
 const Profile = require('../../models/profile')
@@ -19,13 +17,7 @@ const Profile = require('../../models/profile')
 
 const User = require('../../models/User')
 
-//@route GET api/profile/test
-//@Description test post route
-//@acess public
-
-router.get('/test',(req,res)=>res.json({msg:'Profile works'}));
-
-//@route GET api/profile/test
+//@route GET api/profile/
 //@Description get current users profile
 //@acess private
 
