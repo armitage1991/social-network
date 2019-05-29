@@ -23,6 +23,7 @@ const User = require('../../models/User')
 
 router.get('/',passport.authenticate('jwt',{session:false}),(req,res)=>{
     const errors = {};
+    console.log(req.body);
     Profile.findOne({user:req.user.id})
             .populate('user',['name','avatar'])
             .then(profile=>{
@@ -30,12 +31,14 @@ router.get('/',passport.authenticate('jwt',{session:false}),(req,res)=>{
                     errors.noprofile = 'there is no profile for this user';
                     res.status(404).json({errors});
                 }
+                
+                console.log(profile);
 
                 
                 res.json(profile);
             })
 
-            .catch(err=>res.status(404).json(err));
+            .catch(err=>res.status(404).json({}));
 });
 
 //@route GET api/profile/handle/:handle
@@ -86,6 +89,7 @@ router.get('/all',(req,res)=>{
                 errors.noprofile = 'there is no profile for this user';
                 res.status(404).json({nonprofile:errors});
             }
+
 
             res.json(profile);
         })

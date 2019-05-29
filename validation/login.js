@@ -6,6 +6,8 @@ module.exports = function validateLoginInput(data){
     data.email = !isEmpty(data.email)? data.email:'';
     data.password = !isEmpty(data.password)? data.password:'';
 
+    console.log(data.email);
+
     
     if(!validator.isLength(data.password,{min:6,max:30})){
         errors.password = 'password must be at least 6 characteres'
@@ -23,7 +25,6 @@ module.exports = function validateLoginInput(data){
     if(!validator.isEmail(data.email)){
         errors.email = 'email field format is wrong';
     }
-
     return {
         errors,
         isValid:isEmpty(errors)

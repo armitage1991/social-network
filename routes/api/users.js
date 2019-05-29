@@ -36,7 +36,10 @@ router.post('/register',(req,resp)=>{
     User.findOne({email:req.body.email})
         .then(user =>{
             if(user){
-                errors.email = 'this e-mail already exists';
+                errors = {
+                    email:'this e-mail already exists'
+                }
+                
                 return resp.status(400).json({errors})
             }else{
                 const avatar = gravatar.url(req.body.email,{
@@ -73,11 +76,12 @@ router.post('/register',(req,resp)=>{
 
 
 router.post('/login',(req,res)=>{
-
+    console.log(req.body);
     const {errors, isValid} = validateLoginInput(req.body);
 
     if(!isValid){
-        return res.status(400).json({errors:errors})
+        console.log(errors)
+        return res.status(400).json(errors)
     }
 
     const email = req.body.email;
@@ -87,7 +91,10 @@ router.post('/login',(req,res)=>{
             //check for user
 
             if(!user){
-                return res.status(404).json({email:'user not found'})
+                const errors = {
+                    email:'user not found'
+                }
+                return res.status(404).json(errors)
             }
 
             // check Password
@@ -105,7 +112,10 @@ router.post('/login',(req,res)=>{
                         })
                     })
                 }else{
-                    return res.status(400).json({password:'password incorrect'})
+                    const errors = {
+                        password:'password incorrect'
+                    }
+                    return res.status(400).json(errors)
                 }
             })
                 
